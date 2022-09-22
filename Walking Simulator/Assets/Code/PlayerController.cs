@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
 
     public Transform feetTrans; //Position of where the players feet touch the ground
-    float groundCheckDist = .5f; //How far down to check for the ground. The radius of Physics.CheckSphere
+    float groundCheckDist = .2f; //How far down to check for the ground. The radius of Physics.CheckSphere
     public bool grounded = false; //Is the player on the ground
 
     void Start()
@@ -46,9 +46,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        yRotation += Input.GetAxis("Mouse Y") * lookSpeedX;
-        xRotation += Input.GetAxis("Mouse X") * lookSpeedY; //inverted
-        xRotation = Mathf.Clamp(xRotation, -90, 90); //Keeps up/down head rotation realistic
+        yRotation += Input.GetAxis("Mouse X") * lookSpeedX;
+        xRotation -= Input.GetAxis("Mouse Y") * lookSpeedY; //inverted
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f); //Keeps up/down head rotation realistic
         camTrans.localEulerAngles = new Vector3(xRotation, 0, 0);
         transform.eulerAngles = new Vector3(0, yRotation, 0);
 
