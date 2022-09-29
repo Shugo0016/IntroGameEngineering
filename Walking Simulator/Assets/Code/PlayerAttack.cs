@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Image reticle;
 
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI collectiblesCollected;
 
     private bool reticleTarget = false;
 
@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        //AddScore(0);
+        AddScore(0);
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate() {
         RaycastHit hit;
-        if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Interactable"))) {
+        if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Collectible"))) {
             if (!reticleTarget) {
                 reticle.color = Color.red;
                 reticleTarget = true;
@@ -61,17 +61,16 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void onTriggerEnter(Collider other) {
-        if (other.CompareTag("Interactable")) {
-            AddScore(10);
+        if (other.CompareTag("Collectible")) {
+            AddScore(1);
             _audioSource.PlayOneShot(scoreUp);
             Destroy(other.gameObject);
         }
-        
     }
     
     void AddScore(int points) {
         PublicVars.score += points;
-        scoreText.text = "Score: " + PublicVars.score;
+        collectiblesCollected.text = "Battery Cells Collected: " + PublicVars.score;
     }
     
 }
