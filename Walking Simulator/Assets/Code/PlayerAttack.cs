@@ -59,8 +59,6 @@ public class PlayerAttack : MonoBehaviour
                     enemyRB.AddForce(transform.forward * 800 + Vector3.up * 200);
                     enemyRB.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
                 }
-                else if (enemy.CompareTag("Target")) {
-                }
             }
         }
     }
