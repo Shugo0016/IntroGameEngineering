@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 1410476747}
   - component: {fileID: 3078089871808236184}
   - component: {fileID: 2008039871}
+  - component: {fileID: 478515740}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -260,7 +261,6 @@ MonoBehaviour:
   reticle: {fileID: 0}
   scoreText: {fileID: 0}
   scoreUp: {fileID: 8300000, guid: ac3abd536da66d44783bc3d92d382701, type: 3}
-  Footsteps: {fileID: 8300000, guid: 56080387abf28bf4c9d7fa29b37ef700, type: 3}
 --- !u!82 &2008039871
 AudioSource:
   m_ObjectHideFlags: 0
@@ -268,14 +268,14 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5429468263180365005}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 56080387abf28bf4c9d7fa29b37ef700, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -357,6 +357,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &478515740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429468263180365005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd423880229f9cf4385a9aeb18abfea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepSound: {fileID: 2008039871}
 --- !u!1 &5429468263422911260
 GameObject:
   m_ObjectHideFlags: 0
