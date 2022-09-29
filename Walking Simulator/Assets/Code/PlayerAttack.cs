@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,10 +15,6 @@ public class PlayerAttack : MonoBehaviour
     public Image reticle;
 
     public TextMeshProUGUI collectiblesCollected;
-    
-    public TextMeshProUGUI enemiesRemaining;
-    public int enemies;
-    public int killed;
 
     private bool reticleTarget = false;
 
@@ -32,19 +27,6 @@ public class PlayerAttack : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         AddScore(0);
-        killed = 0;
-        EnemiesRemaining(0);
-        switch(SceneManager.GetActiveScene().name) {
-            case "Level 1":
-                enemies = PublicVars.Enemies1;
-                break;
-            case "Level 2":
-                enemies = PublicVars.Enemies2;
-                break;
-            case "Level 3":
-                enemies = PublicVars.Enemies3;
-                break;
-        }
     }
 
     // Update is called once per frame
@@ -90,9 +72,5 @@ public class PlayerAttack : MonoBehaviour
         PublicVars.score += points;
         collectiblesCollected.text = "Battery Cells Collected: " + PublicVars.score;
     }
-
-    void EnemiesRemaining(int death) {
-        killed += death;
-        enemiesRemaining.text = "Enemies Remaining: " + (enemies - killed);
-    }
+    
 }
