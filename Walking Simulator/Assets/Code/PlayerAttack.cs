@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Image reticle;
 
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI collectiblesCollected;
 
     private bool reticleTarget = false;
 
@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        //AddScore(0);        
+        AddScore(0);
     }
 
     // Update is called once per frame
@@ -37,14 +37,11 @@ public class PlayerAttack : MonoBehaviour
             if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist, enemyLayer)) {
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.CompareTag("Enemy")) {
-                    Destroy(enemy);
+                    Rigidbody enemyRB = enemy.GetComponent<Rigidbody>();
+                    enemyRB.AddForce(transform.forward * 800 + Vector3.up * 200);
+                    enemyRB.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
                 }
-                else if (enemy.CompareTag("Enemy")) {
-                    print("imposter");
-                    enemy.GetComponent<Rigidbody>().AddForce(transform.forward*800);
-                    // Rigidbody enemyRB = enemy.GetComponent<Rigidbody>();
-                    // enemyRB.AddForce(transform.forward * 800 + Vector3.up * 200);
-                    // enemyRB.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
+                else if (enemy.CompareTag("Target")) {
                 }
             }
         }
@@ -52,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate() {
         RaycastHit hit;
-        if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Interactable"))) {
+        if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Collectible"))) {
             if (!reticleTarget) {
                 reticle.color = Color.red;
                 reticleTarget = true;
@@ -64,15 +61,16 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void onTriggerEnter(Collider other) {
-        if (other.CompareTag("Enemy")) {
-            //AddScore(10);
+        if (other.CompareTag("Collectible")) {
+            AddScore(1);
             _audioSource.PlayOneShot(scoreUp);
             Destroy(other.gameObject);
         }
     }
-
-    // void AddScore(int points) {
-    //     PublicVars.score += points;
-    //     scoreText.text = "Score: " + PublicVars.score;
-    // }
+    
+    void AddScore(int points) {
+        PublicVars.score += points;
+        collectiblesCollected.text = "Battery Cells Collected: " + PublicVars.score;
+    }
+    
 }
