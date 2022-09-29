@@ -70,18 +70,18 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void onTriggerEnter(Collider other) {
-        /*
+        
         if (other.CompareTag("Enemy")) {
             AddScore(10);
             _audioSource.PlayOneShot(scoreUp);
             Destroy(other.gameObject);
         }
-        */
+        
     }
-    /*
+    
     void AddScore(int points) {
         PublicVars.score += points;
         scoreText.text = "Score: " + PublicVars.score;
     }
-    */
+    
 }
