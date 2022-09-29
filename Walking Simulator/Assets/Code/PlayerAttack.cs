@@ -19,6 +19,8 @@ public class PlayerAttack : MonoBehaviour
     private bool reticleTarget = false;
 
     AudioSource _audioSource;
+    
+    public AudioSource footsteps;
 
     public AudioClip scoreUp;
 
@@ -26,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        AddScore(0);        
+        //AddScore(0);
     }
 
     // Update is called once per frame
@@ -37,15 +39,20 @@ public class PlayerAttack : MonoBehaviour
             if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist, enemyLayer)) {
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.CompareTag("Enemy")) {
-                    Destroy(enemy);
-                }
-                
-                else if (enemy.CompareTag("Target")) {
                     Rigidbody enemyRB = enemy.GetComponent<Rigidbody>();
                     enemyRB.AddForce(transform.forward * 800 + Vector3.up * 200);
                     enemyRB.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
                 }
+                
+                else if (enemy.CompareTag("Target")) {
+
+                }
             }
+        }
+        if (Input.GetKeyDown("w") || Input.GetKeyDown("a") || Input.GetKeyDown("d") || Input.GetKeyDown("s")) {
+            footsteps.enabled = true;
+        } else {
+            footsteps.enabled = false;
         }
     }
 
@@ -63,15 +70,18 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void onTriggerEnter(Collider other) {
+        /*
         if (other.CompareTag("Enemy")) {
             AddScore(10);
             _audioSource.PlayOneShot(scoreUp);
             Destroy(other.gameObject);
         }
+        */
     }
-
+    /*
     void AddScore(int points) {
         PublicVars.score += points;
         scoreText.text = "Score: " + PublicVars.score;
     }
+    */
 }
