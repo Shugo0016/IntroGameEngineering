@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 540ffbf548ee8354e816921b9a10306b
   - enabled: 0
-    path: Assets/Scenes/Pain.unity
+    path: Assets/Scenes/Level 2.unity
     guid: a4ef6dfc05d628946b9c0d32b1f7085f
   - enabled: 0
     path: Assets/Scenes/SusScene.unity
