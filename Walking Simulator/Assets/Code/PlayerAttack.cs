@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -14,7 +15,11 @@ public class PlayerAttack : MonoBehaviour
 
     public Image reticle;
 
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI collectiblesCollected;
+    
+    public TextMeshProUGUI enemiesRemaining;
+    public int enemies;
+    public int killed;
 
     private bool reticleTarget = false;
 
@@ -26,7 +31,20 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        AddScore(0);        
+        AddScore(0);
+        killed = 0;
+        EnemiesRemaining(0);
+        switch(SceneManager.GetActiveScene().name) {
+            case "Level 1":
+                enemies = PublicVars.Enemies1;
+                break;
+            case "Level 2":
+                enemies = PublicVars.Enemies2;
+                break;
+            case "Level 3":
+                enemies = PublicVars.Enemies3;
+                break;
+        }    
     }
 
     // Update is called once per frame
@@ -48,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate() {
         RaycastHit hit;
-        if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Interactable"))) {
+         if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Interactable"))) {
             if (!reticleTarget) {
                 reticle.color = Color.red;
                 reticleTarget = true;
