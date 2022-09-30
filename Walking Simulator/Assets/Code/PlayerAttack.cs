@@ -82,9 +82,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void onTriggerEnter(Collider other) {
-
-        print("SUISSHYUSS!");
+    public void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Collectible")) {
             AddScore(1);
             _audioSource.PlayOneShot(scoreUp);
