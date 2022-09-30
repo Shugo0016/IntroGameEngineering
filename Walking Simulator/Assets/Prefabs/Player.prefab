@@ -100,9 +100,19 @@ GameObject:
   - component: {fileID: 5429468263180365002}
   - component: {fileID: 1410476747}
   - component: {fileID: 3078089871808236184}
+<<<<<<< Updated upstream
   - component: {fileID: 2008039871}
   - component: {fileID: 478515740}
   - component: {fileID: 1437813397138160800}
+=======
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: 2008039871}
+  - component: {fileID: 478515740}
+  - component: {fileID: 1437813397138160800}
+  - component: {fileID: 4774343138731819062}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -265,7 +275,18 @@ MonoBehaviour:
     m_Bits: 0
   camTrans: {fileID: 5429468261946780434}
   reticle: {fileID: 0}
+<<<<<<< Updated upstream
   collectiblesCollected: {fileID: 0}
+=======
+<<<<<<< Updated upstream
+  scoreText: {fileID: 0}
+  scoreUp: {fileID: 0}
+=======
+  collectiblesCollected: {fileID: 0}
+  enemiesRemaining: {fileID: 0}
+  enemies: 0
+  killed: 0
+>>>>>>> Stashed changes
   scoreUp: {fileID: 8300000, guid: ac3abd536da66d44783bc3d92d382701, type: 3}
 --- !u!82 &2008039871
 AudioSource:
@@ -384,6 +405,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5429468263180365005}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
+=======
+--- !u!114 &4774343138731819062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429468263180365005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653115c70ab716f4e8947035f020d23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 --- !u!1 &5429468263422911260
 GameObject:
   m_ObjectHideFlags: 0
