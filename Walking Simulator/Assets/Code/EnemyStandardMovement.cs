@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyStandardMovement : MonoBehaviour
 {
-    public float movementSpeed = 15f;
+    public float movementSpeed = 20f;
     public float rotationSpeed = 100f;
     private bool isWandering = false;
     private bool isRotatingLeft = false;
@@ -39,6 +39,11 @@ public class EnemyStandardMovement : MonoBehaviour
         {
             transform.Rotate(transform.up * Time.deltaTime * -rotationSpeed);
         }
+        if (isWalking)
+        {
+            rb.AddForce(transform.forward * movementSpeed);
+        }
+        
     }
 
     IEnumerator Wander()

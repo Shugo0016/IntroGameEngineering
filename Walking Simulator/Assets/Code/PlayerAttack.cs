@@ -26,7 +26,8 @@ public class PlayerAttack : MonoBehaviour
     AudioSource _audioSource;
 
     public AudioClip scoreUp;
-    public AudioClip killSound;
+
+    public AudioClip kill;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,6 @@ public class PlayerAttack : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         AddScore(0);
         killed = 0;
-        EnemiesRemaining(0);
         switch(SceneManager.GetActiveScene().name) {
             case "Level 1":
                 enemies = PublicVars.Enemies1;
@@ -45,7 +45,8 @@ public class PlayerAttack : MonoBehaviour
             case "Level 3":
                 enemies = PublicVars.Enemies3;
                 break;
-        }    
+        }
+        EnemiesRemaining(0);  
     }
 
     // Update is called once per frame
@@ -58,9 +59,9 @@ public class PlayerAttack : MonoBehaviour
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.CompareTag("Enemy")) {
                     Destroy(enemy.transform.GetChild(1).gameObject);
-                    enemy.GetComponent<BoxCollider>().enabled = false;
-                    enemy.GetComponent<EnemyStandardMovement>().enabled = false;
-                    _audioSource.PlayOneShot(killSound);
+                    var x = enemy.GetComponent<BoxCollider>().enabled = false;
+                    EnemiesRemaining(1);
+                    _audioSource.PlayOneShot(kill);
                 }
             }
         }
@@ -68,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate() {
         RaycastHit hit;
-         if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Interactable"))) {
+         if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("crewmateHead"))) {
             if (!reticleTarget) {
                 reticle.color = Color.red;
                 reticleTarget = true;
@@ -97,5 +98,16 @@ public class PlayerAttack : MonoBehaviour
     void EnemiesRemaining(int death) {
         killed += death;
         enemiesRemaining.text = "Enemies Remaining: " + (enemies - killed);
+        switch(SceneManager.GetActiveScene().name) {
+            case "Level 1":
+                PublicVars.level2 = true;
+                break;
+            case "Level 2":
+                PublicVars.level3 = true;
+                break;
+        }
+        if (enemies == killed) {
+            SceneManager.LoadScene("Level Selector");
+        }
     }
 }
