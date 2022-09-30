@@ -9,17 +9,16 @@ TagManager:
   - Interactable
   - Collectible
   - crewmateHead
-
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Collectible
+  - 
   - Water
   - UI
+  - 
+  - 
   - enemyLayer
-  - 
-  - 
   - 
   - 
   - 
