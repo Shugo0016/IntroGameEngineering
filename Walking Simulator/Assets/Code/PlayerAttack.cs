@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        //AddScore(0);        
+        AddScore(0);        
     }
 
     // Update is called once per frame
@@ -34,17 +34,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)){
             RaycastHit hit;
+            print(Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist, enemyLayer));
             if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist, enemyLayer)) {
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.CompareTag("Enemy")) {
-                    Destroy(enemy);
-                }
-                else if (enemy.CompareTag("Enemy")) {
-                    print("imposter");
-                    enemy.GetComponent<Rigidbody>().AddForce(transform.forward*800);
-                    // Rigidbody enemyRB = enemy.GetComponent<Rigidbody>();
-                    // enemyRB.AddForce(transform.forward * 800 + Vector3.up * 200);
-                    // enemyRB.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
+                    Destroy(enemy.transform.GetChild(1).gameObject);
+                    var x = enemy.GetComponent<BoxCollider>().enabled = false;
+
                 }
             }
         }
@@ -64,15 +60,22 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void onTriggerEnter(Collider other) {
-        if (other.CompareTag("Enemy")) {
-            //AddScore(10);
+
+        print("SUISSHYUSS!");
+        if (other.CompareTag("Collectible")) {
+            AddScore(1);
             _audioSource.PlayOneShot(scoreUp);
             Destroy(other.gameObject);
         }
     }
 
-    // void AddScore(int points) {
-    //     PublicVars.score += points;
-    //     scoreText.text = "Score: " + PublicVars.score;
-    // }
+    void AddScore(int points) {
+        PublicVars.score += points;
+        collectiblesCollected.text = "Battery Cells Collected: " + PublicVars.score;
+    }
+
+    void EnemiesRemaining(int death) {
+        killed += death;
+        enemiesRemaining.text = "Enemies Remaining: " + (enemies - killed);
+    }
 }
