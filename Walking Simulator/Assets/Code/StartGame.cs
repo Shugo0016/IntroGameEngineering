@@ -14,6 +14,6 @@ public class StartGame : MonoBehaviour
     // Update is called once per frame
     public void GameStart()
     {
-        SceneManager.LoadScene("Pain");
+        SceneManager.LoadScene("Level 3");
     }
 }
