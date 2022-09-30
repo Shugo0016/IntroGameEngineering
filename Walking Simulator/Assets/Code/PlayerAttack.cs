@@ -60,11 +60,19 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     public void onTriggerEnter(Collider other) {
         if (other.CompareTag("Collectible")) {
+=======
+    public void OnTriggerEnter(Collider other) {
+
+        print("SUISSHYUSS!");
+        if (other.tag == "Collectible")
+        {
+>>>>>>> Stashed changes
             AddScore(1);
             _audioSource.PlayOneShot(scoreUp);
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
     
