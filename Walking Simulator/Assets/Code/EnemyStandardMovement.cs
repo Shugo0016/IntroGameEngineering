@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyStandardMovement : MonoBehaviour
 {
-    public float movementSpeed = 20f;
+    public float movementSpeed = 15f;
     public float rotationSpeed = 100f;
     private bool isWandering = false;
     private bool isRotatingLeft = false;
@@ -17,22 +17,12 @@ public class EnemyStandardMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-<<<<<<< Updated upstream
         
-=======
-
->>>>>>> Stashed changes
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
-        if(!isWandering)
-        {
-            StartCoroutine(Wander());
-        }
-=======
         if (!isWandering)
         {
             StartCoroutine(Wander());
@@ -41,7 +31,6 @@ public class EnemyStandardMovement : MonoBehaviour
         {
             rb.AddForce(transform.forward * movementSpeed);
         }
->>>>>>> Stashed changes
         if (isRotatingRight)
         {
             transform.Rotate(transform.up * Time.deltaTime * rotationSpeed);
@@ -50,14 +39,6 @@ public class EnemyStandardMovement : MonoBehaviour
         {
             transform.Rotate(transform.up * Time.deltaTime * -rotationSpeed);
         }
-<<<<<<< Updated upstream
-        if (isWalking)
-        {
-            rb.AddForce(transform.forward * movementSpeed);
-        }
-=======
-        
->>>>>>> Stashed changes
     }
 
     IEnumerator Wander()
@@ -92,8 +73,4 @@ public class EnemyStandardMovement : MonoBehaviour
         isWandering = false;
 
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes

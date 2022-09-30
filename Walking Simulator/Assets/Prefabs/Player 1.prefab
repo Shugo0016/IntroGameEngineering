@@ -98,13 +98,12 @@ GameObject:
   - component: {fileID: 5429468263180365015}
   - component: {fileID: 5429468263180365003}
   - component: {fileID: 5429468263180365002}
-  - component: {fileID: 1410476747}
   - component: {fileID: 3078089871808236184}
   - component: {fileID: 2008039871}
   - component: {fileID: 478515740}
   - component: {fileID: 1437813397138160800}
   m_Layer: 6
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,24 +229,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1410476747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5429468263180365005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aed589fe00a223499e4fc991acf6b91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camTrans: {fileID: 5429468261946780434}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  feetTrans: {fileID: 5429468263422911261}
-  grounded: 0
 --- !u!114 &3078089871808236184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,10 +243,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   camTrans: {fileID: 5429468261946780434}
   reticle: {fileID: 0}
   collectiblesCollected: {fileID: 0}
+  enemiesRemaining: {fileID: 0}
+  enemies: 0
+  killed: 0
   scoreUp: {fileID: 8300000, guid: ac3abd536da66d44783bc3d92d382701, type: 3}
 --- !u!82 &2008039871
 AudioSource:
