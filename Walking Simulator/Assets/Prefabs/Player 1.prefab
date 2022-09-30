@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 478515740}
   - component: {fileID: 1437813397138160800}
   m_Layer: 6
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,11 +262,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   camTrans: {fileID: 5429468261946780434}
   reticle: {fileID: 0}
   collectiblesCollected: {fileID: 0}
+  enemiesRemaining: {fileID: 0}
+  enemies: 0
+  killed: 0
   scoreUp: {fileID: 8300000, guid: ac3abd536da66d44783bc3d92d382701, type: 3}
+  kill: {fileID: 8300000, guid: ed221b038a434bf4e8dfb9604b77ca9f, type: 3}
 --- !u!82 &2008039871
 AudioSource:
   m_ObjectHideFlags: 0

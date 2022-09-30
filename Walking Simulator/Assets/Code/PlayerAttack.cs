@@ -27,13 +27,14 @@ public class PlayerAttack : MonoBehaviour
 
     public AudioClip scoreUp;
 
+    public AudioClip kill;
+
     // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         AddScore(0);
         killed = 0;
-        EnemiesRemaining(0);
         switch(SceneManager.GetActiveScene().name) {
             case "Level 1":
                 enemies = PublicVars.Enemies1;
@@ -44,7 +45,8 @@ public class PlayerAttack : MonoBehaviour
             case "Level 3":
                 enemies = PublicVars.Enemies3;
                 break;
-        }    
+        }
+        EnemiesRemaining(0);  
     }
 
     // Update is called once per frame
@@ -58,7 +60,8 @@ public class PlayerAttack : MonoBehaviour
                 if (enemy.CompareTag("Enemy")) {
                     Destroy(enemy.transform.GetChild(1).gameObject);
                     var x = enemy.GetComponent<BoxCollider>().enabled = false;
-
+                    EnemiesRemaining(1);
+                    _audioSource.PlayOneShot(kill);
                 }
             }
         }
@@ -95,5 +98,16 @@ public class PlayerAttack : MonoBehaviour
     void EnemiesRemaining(int death) {
         killed += death;
         enemiesRemaining.text = "Enemies Remaining: " + (enemies - killed);
+        switch(SceneManager.GetActiveScene().name) {
+            case "Level 1":
+                PublicVars.level2 = true;
+                break;
+            case "Level 2":
+                PublicVars.level3 = true;
+                break;
+        }
+        if (enemies == killed) {
+            SceneManager.LoadScene("Level Selector");
+        }
     }
 }
