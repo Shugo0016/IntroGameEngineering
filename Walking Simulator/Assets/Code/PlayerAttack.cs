@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
     public AudioClip scoreUp;
 
-    public AudioClip kill;
+    public AudioClip killSound;
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +60,10 @@ public class PlayerAttack : MonoBehaviour
                 if (enemy.CompareTag("Enemy")) {
                     Destroy(enemy.transform.GetChild(1).gameObject);
                     var x = enemy.GetComponent<BoxCollider>().enabled = false;
+                    enemy.GetComponent<BoxCollider>().enabled = false;
+                    enemy.GetComponent<EnemyStandardMovement>().enabled = false;
                     EnemiesRemaining(1);
-                    _audioSource.PlayOneShot(kill);
+                    _audioSource.PlayOneShot(killSound);
                 }
             }
         }
