@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate() {
         RaycastHit hit;
-         if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Interactable"))) {
+         if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("crewmateHead"))) {
             if (!reticleTarget) {
                 reticle.color = Color.red;
                 reticleTarget = true;
