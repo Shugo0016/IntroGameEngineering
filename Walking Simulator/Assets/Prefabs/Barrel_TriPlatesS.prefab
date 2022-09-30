@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 5609430351236284335}
   - component: {fileID: 5619428119589123077}
   - component: {fileID: 5597286562759970514}
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: 6253512711530080558}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Barrel_TriPlatesS
   m_TagString: Collectible
@@ -96,3 +100,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db61614c14839a0449429789eecbaa66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
+=======
+--- !u!136 &6253512711530080558
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5597415751665049555}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.26681978
+  m_Height: 0.6798812
+  m_Direction: 1
+  m_Center: {x: -0.000000009835653, y: 0.3399405, z: 0.000000010131016}
+>>>>>>> Stashed changes

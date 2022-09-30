@@ -44,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
             case "Level 3":
                 enemies = PublicVars.Enemies3;
                 break;
-        }
+        }    
     }
 
     // Update is called once per frame
@@ -52,12 +52,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)){
             RaycastHit hit;
+            print(Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist, enemyLayer));
             if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist, enemyLayer)) {
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.CompareTag("Enemy")) {
-                    Rigidbody enemyRB = enemy.GetComponent<Rigidbody>();
-                    enemyRB.AddForce(transform.forward * 800 + Vector3.up * 200);
-                    enemyRB.AddTorque(new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)));
+                    Destroy(enemy.transform.GetChild(1).gameObject);
+                    var x = enemy.GetComponent<BoxCollider>().enabled = false;
+
                 }
             }
         }
@@ -65,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate() {
         RaycastHit hit;
-        if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Collectible"))) {
+         if (Physics.Raycast(camTrans.position, camTrans.forward, out hit, raycastDist) && (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Interactable"))) {
             if (!reticleTarget) {
                 reticle.color = Color.red;
                 reticleTarget = true;
@@ -77,13 +78,15 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void onTriggerEnter(Collider other) {
+
+        print("SUISSHYUSS!");
         if (other.CompareTag("Collectible")) {
             AddScore(1);
             _audioSource.PlayOneShot(scoreUp);
             Destroy(other.gameObject);
         }
     }
-    
+
     void AddScore(int points) {
         PublicVars.score += points;
         collectiblesCollected.text = "Battery Cells Collected: " + PublicVars.score;
