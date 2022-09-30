@@ -6,6 +6,7 @@ public static class PublicVars {
     public static int Enemies3 = 1;
     public static float suspicionLevel = 0;
     public static float frameCounter = 0;
-    
-    public static int LevelsCompleted = 0;
+
+    public static bool level2 = true;
+    public static bool level3 = true;
 }
